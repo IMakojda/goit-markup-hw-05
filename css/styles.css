@@ -10,6 +10,7 @@
   --font-weight-bold: 700; /*Bold*/
   --set-gap: 30px;
   --timing-function:cubic-bezier(0.4, 0, 0.2, 1);
+  --trans-direct:250ms;
 }
 
 body {
@@ -93,13 +94,16 @@ img {
   line-height: 1.14;
   color: var(--text-title-color-btn-dark);
   padding: 32px 0;
+  transition-property: color;
+  transition-duration: var(--trans-direct);
+  transition-timing-function: var(--timing-function);
 }
 
 .nav-bar-list a:hover,
 .nav-bar-list a:focus {
   text-decoration: none; /* фокус кнопок навігації*/
   color: var(--akcent-color);
-  transition: 250ms var(--timing-function);
+  
 }
 .link,.link-current{
   display: block;
@@ -115,12 +119,13 @@ img {
   font-size: 14px; /* контакти*/
   line-height: 1.14;
   color: var(--text-subtitle-color);
+  transition-property: color;
+  transition-duration: var(--trans-direct);
+  transition-timing-function:var(--timing-function);
 }
-.akcent:hover,
-.akcent:focus {
+.contact:hover,.contact:focus {
   text-decoration: none; /* фокус на контактах*/
   color: var(--akcent-color);
-  transition: color 250ms var(--timing-function);
 }
 
 /* header flex style  */
@@ -477,6 +482,13 @@ footer {
 
 .adress {
   font-style: normal;
+}
+.contact-footer {
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1,71;
+  letter-spacing: 0.03em;        /* контакти футер*/
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .adress-line {
