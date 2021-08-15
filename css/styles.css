@@ -9,6 +9,7 @@
   --icon-color: #afb1b8;
   --font-weight-bold: 700; /*Bold*/
   --set-gap: 30px;
+  --timing-function:cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -98,8 +99,11 @@ img {
 .nav-bar-list a:focus {
   text-decoration: none; /* фокус кнопок навігації*/
   color: var(--akcent-color);
+  transition: 250ms var(--timing-function);
 }
-
+.link,.link-current{
+  display: block;
+}
 .nav-bar-list .link-current {
   text-decoration: none;
   color: var(--akcent-color); /* фокус ссилок навігації*/
@@ -116,6 +120,7 @@ img {
 .akcent:focus {
   text-decoration: none; /* фокус на контактах*/
   color: var(--akcent-color);
+  transition: color 250ms var(--timing-function);
 }
 
 /* header flex style  */
@@ -133,6 +138,7 @@ img {
 .nav-holder {
   display: flex;
   align-items: center;
+  height: 80px;
 }
 
 .nav-bar-item {
@@ -143,15 +149,15 @@ img {
 }
 .link-current {
   position: relative;
+
 }
 .link-current::after {
   content: " ";
   position: absolute;
-  left: 0;
   bottom: 0;
   display: block;
   width: 100%;
-  height: 5px;
+  height: 4px;
   border-radius: 2px;
   background-color: var(--akcent-color);
 }
@@ -211,6 +217,9 @@ img {
 }
 
 .btn-order-service {
+  padding: 10px 32px;
+  display: block;
+  margin: 0 auto;
   font-weight: var(--font-weight-bold);
   font-size: 16px; /* кнопк азаказать услугу*/
   line-height: 1.87;
@@ -220,9 +229,12 @@ img {
   text-align: center;
   flex-basis: 50px;
   border-radius: 4px;
-  padding: 10px 32px;
-  display: block;
-  margin: 0 auto;
+}
+
+.btn-order-service:hover,
+.btn-order-service:focus{
+  background-color: rgba(24, 140, 232, 1);
+  transition: background-color 250ms var(--timing-function);
 }
 
 /* advantegse styles  */
@@ -259,6 +271,7 @@ img {
 .icon-hold {
   padding: 25px 100px;
   background: var(--background-section);
+  border-radius: 4px;
 }
 /* what do you do  */
 .we-do {
@@ -380,6 +393,8 @@ img {
 .social-link:focus {
   fill: var(--text-hero-section-logo-light);
   background-color: var(--akcent-color);
+  transition:fill 250ms var(--timing-function);
+  transition:background-color 250ms var(--timing-function);
 }
 .social-link:not(:last-child) {
   margin-right: 10px;
@@ -425,11 +440,13 @@ img {
 .holder-svg-client:focus svg,
 .holder-svg-client:hover svg {
   fill: var(--akcent-color);
+  transition: fill 250ms var(--timing-function);
 }
 .holder-svg-client:focus,
 .holder-svg-client:hover {
   border: 1px solid var(--akcent-color);
   border-radius: 4px;
+  transition:border 250ms var(--timing-function);
 }
 
 .icon-clients {
@@ -498,6 +515,63 @@ address p {
   fill: var(--text-hero-section-logo-light);
   background-color: rgba(255, 255, 255, 0.1);
 }
+/* Modal window */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  opacity: 1;
+  transition: opacity 250ms var(--timing-function);
+}
+
+.backdrop.is-hidden{
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.backdrop.is-hidden .modal{
+transform: translate(-50%, -50%) scale(1.2);
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  height: 581px;
+  width: 528px;
+  border-radius: 4px;
+  background-color: var(--text-hero-section-logo-light);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+
+  transform: translate(-50%,-50%) scale(1);
+  transition: transform 250ms var(--timing-function);
+}
+
+.close-modal {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--text-hero-section-logo-light);
+  height: 30px;
+  width: 30px;
+  border-radius:50%;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.close-btn {
+  fill:var(--logo-color-dark);
+}
+
 
 /* Portfolio Page*/
 .curent-btn {
@@ -511,6 +585,7 @@ address p {
   background-color: var(--akcent-color);
   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
     0px 2px 2px rgba(0, 0, 0, 0.12);
+    transition:color 250ms var(--timing-function),box-shadow 250ms var(--timing-function),background-color 250ms var(--timing-function);
 }
 
 .sign-work {
@@ -518,6 +593,7 @@ address p {
   font-size: 18px;
   line-height: 2;
   letter-spacing: 0.06em;
+  color: var(--text-title-color-btn-dark);
 }
 
 .filter-work-sign {
@@ -568,11 +644,42 @@ button:not(:last-child) {
 .card-poster:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
+  transition:box-shadow 250ms var(--timing-function);
 }
 
 .card-poster {
   display: block;
   border: 1px solid #eeeeee;
+ }
+
+.image-thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.work-description {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(33, 150, 243, 0.9);
+  padding: 63px 24px;
+  transform: translateY(100%);
+  opacity: 0;
+ }
+
+.card-poster:hover .work-description {
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 250ms var(--timing-function), opacity 250ms var(--timing-function);
+ }
+.tehno-anagraph {
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+  color: var(--text-hero-section-logo-light);
+  text-align: center;
 }
 
 .card-contetnt {
